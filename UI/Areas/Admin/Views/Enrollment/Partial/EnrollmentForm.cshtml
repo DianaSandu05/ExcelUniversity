@@ -1,0 +1,30 @@
+﻿@model DTO.EnrollmentDTO
+<div class="box-body">
+
+    <div class="form-group">
+        <label>Student ID</label>
+        @Html.TextBoxFor(x => x.StudentID, new { @class = "form-control", placeholder = "student id" })
+        @Html.ValidationMessageFor(x => x.TeacherID)
+      
+    </div>
+
+    <div class="form-group">
+        <label>Assignments ID</label>
+        @Html.TextBoxFor(x => x.AssignmentID, new { @class = "form-control", placeholder = "teacher id" })
+        @Html.ValidationMessageFor(x => x.AssignmentID)
+        
+    </div>
+
+    <div class="form-group">
+        <label>Course ID</label>
+        @Html.TextBoxFor(x => x.CourseID, new { @class = "form-control", placeholder = "course id" })
+        @Html.ValidationMessageFor(x => x.CourseID)
+    </div>
+   
+
+
+    <input type="number" hidden name="ID" value="@Model.ID" />
+    <div class="card-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+</div>

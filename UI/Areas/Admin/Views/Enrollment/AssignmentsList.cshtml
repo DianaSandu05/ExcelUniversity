@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "AssignmentsList";
+    Layout = "~/Areas/Admin/Views/Shared/StudentLayout.cshtml";
+}
+
+@model List<DTO.EnrollmentDTO>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Assignment deadlines</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+
+                    <th>Course</th>
+                    <th>CourseName</th>
+                    <th>Submission date</th>
+                    <th>Assignment Deadline</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.CourseID</td>
+                        <td>@item.CourseName</td>
+                        <td>@item.SubmissionDate</td>
+                        <td>@item.AssignmentDeadline</td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->
+          </div>
+<!-- /.col -->

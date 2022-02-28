@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "AddApp";
+    Layout = "~/Areas/Admin/Views/Shared/StudentLayout.cshtml";
+}
+
+<div class="col-md-9">
+    @Html.Partial("~/Areas/Admin/Views/Appointments/Partial/AppForm.cshtml")
+    <div class="box box-primary">
+        @using (Html.BeginForm("AddApp", "Appointment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.Partial("Partial/AppForm")
+        }
+    </div>
+</div>
+

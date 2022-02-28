@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "EnrolledCoursesList";
+    Layout = "~/Areas/Admin/Views/Shared/StudentLayout.cshtml";
+}
+
+
+@model List<DTO.EnrollmentDTO>
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title">Modules</h3>
+        <div class="card-tools">
+            <a href="#" class="btn btn-tool btn-sm">
+                <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="btn btn-tool btn-sm">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="card border-0">
+        <br />
+        <div class="card-tools">
+            <a href="@Url.RouteUrl("Courses", new { @item.CourseName})" class="post-cata cata-sm cata-success card-title">@item.CourseName</a>
+
+        </div>
+        <br />
+    </div>
+
+}
+
+
+
+

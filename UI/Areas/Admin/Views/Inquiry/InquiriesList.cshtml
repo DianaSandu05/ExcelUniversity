@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "InquiriesList";
+    Layout = "~/Areas/Admin/Views/Shared/UserLayout.cshtml";
+}
+
+@model List<DTO.InquiriesDTO>
+
+
+<section class="content-header">
+    <h1>Inquiries List</h1>
+    <ol class="breadcrumb float-sm-left">
+        <li class="breadcrumb-item">User</li>
+        <li class="breadcrumb-item">Inquiries</li>
+        <li class="breadcrumb-item active">Inquiries List</li>
+    </ol>
+</section>
+<br />
+<div class="card">
+    <div class="card-body">
+        <table id="ShowTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th> Student Name </th>
+                    <th>Inquiry Details</th>
+                 
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+
+
+                    <tr id="@item">
+                        <td>@item.CourseID</td>
+                        <td>@item.CourseName</td>
+                        <td>@item.sFirstName @item.sSurname</td>
+                        <td>@item.InquiryDetails</td>
+
+
+                        <td align="center" valign="middle">
+                            <a href="/Admin/User/UpdateUser/@item.ID"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+            
+        </table>
+    </div>
+</div>
+

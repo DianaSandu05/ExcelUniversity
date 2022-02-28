@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "addStudent";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<section class="content-header">
+    <h1>Add Student</h1>
+    <ol class="breadcrumb float-sm-left">
+        <li class="breadcrumb-item">Admin</li>
+        <li class="breadcrumb-item">Student</li>
+        <li class="breadcrumb-item active">Add student</li>
+    </ol>
+</section>
+<br />
+<div class="card-footer">
+    <button type="submit" class="btn btn-primary" onclick="window.location.href='/Admin/Student/StudentList'">Student List</button>
+</div>
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            @Html.Partial("~/Areas/Admin/Views/Shared/MessageForm.cshtml")
+            <div class="box box-primary">
+                @using (Html.BeginForm("AddStudent", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Partial("Partial/StudentForm")
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,194 @@
+﻿<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bloemendhal City Campus</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="~/Areas/Admin/Content/CSS/all.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/CSS/adminlte.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+            <div class="container">
+                <a href="../../index3.html" class="navbar-brand">
+                    <img src="~/Areas/Admin/Content/Images/logo.png" alt="Logo" class="brand-image img-md" style="opacity: .8">
+                    <span class="brand-text font-weight-light">Bloemendhal City Campus</span>
+                </a>
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
+                        data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse order-1" id="navbarCollapse">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="index3.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Courses</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Applying</a>
+                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                <li><a href="#" class="dropdown-item">Fees </a></li>
+                                <li><a href="#" class="dropdown-item">International students</a></li>
+                                <li><a href="#" class="dropdown-item">Contact</a></li>
+                                <li class="dropdown-divider"></li>
+                                </ul>
+                                <!-- Level two dropdown-->
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Courses and more</a>
+                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a tabindex="-1" href="#" class="dropdown-item">Knowledge and Research</a>
+                                        </li>
+
+                                        <!-- Level three dropdown-->
+                                        <li class="dropdown-submenu">
+                                            <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Course</a>
+                                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                                                <li><a href="#" class="dropdown-item">Undergraduates</a></li>
+                                                <li><a href="#" class="dropdown-item">Postgraduates</a></li>
+                                                <li><a href="#" class="dropdown-item">More Courses</a></li>
+                                            </ul>
+                                        </li>
+                                        <!-- End Level three -->
+
+                                        <li><a href="#" class="dropdown-item">Study abroad</a></li>
+                                        <li><a href="#" class="dropdown-item">General</a></li>
+                                    </ul>
+                                </li>
+                                <!-- End Level two -->
+                       
+                       
+
+                    </ul>
+                   
+
+
+                </div>
+            </div>
+            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ">
+                <li class="nav-item">
+
+
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link "><i class="fas fa-th-large"></i></a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu dropdown-menu-right border-0 shadow">
+                        <li><a href="#" class="dropdown-item">Teacher VLE </a></li>
+                        <li><a href="@Url.Action("StudentLogin", "Student")"  class="dropdown-item">Student VLE</a></li>
+                        <li><a href="@Url.Action("UserLogin", "User")" class="dropdown-item">User VLE</a></li>
+                        <li><a href="#" class="dropdown-item">Administration VLE</a></li>
+
+                    </ul>
+            </ul>
+        </nav>
+
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0"> Welcome to Bloemendhal City Campus</h1>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="~/Areas/Admin/Content/Images/carousel1.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Apply for January intake</h5>
+                            <p>Undergraduate and postgraduate courses available for January intake</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="~/Areas/Admin/Content/Images/england.jpg" alt="Second slide">
+                       
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="~/Areas/Admin/Content/Images/england1.jpg" alt="Third slide">
+                        
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                          
+
+                            <div class="card card-primary card-outline">
+                                <div class="card-body">
+                                    <h5 class="card-title">About us</h5>
+
+                                    <p class="card-text">
+                                        We are one of the largest, most diverse universities in the UK with over 120,000 students in London,
+                                        and a further 50,000 studying across 190 countries for a Bloemendhal City Campus degree.
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Contact</a>
+                                </div>
+                            </div><!-- /.card -->
+                        </div>
+                        
+                        <!-- /.col-md-6 -->
+                        <div class="col-lg-6">
+                          
+
+                            <div class="card card-primary card-outline">
+                                <div class="card-body">
+                                    <h6 class="card-title">January intake</h6>
+
+                                    <p class="card-text">
+                                        You don't have to wait a whole year to study with us. We offer you the opportunity to
+                                        start many of our undergraduate and postgraduate courses in the new year – browse our courses below.
+                                    </p>
+                                    <a href="#" class="btn btn-primary">More details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Bloemendhal City Campus</strong> All rights reserved.
+        </footer>
+   
+    
+
+    <script src="~/Areas/Admin/Content/JS/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/JS/bootstrap.bundle.min.js"></script>
+    <script src="~/Areas/Admin/Content/JS/adminlte.min.js"></script>
+    <script src="~/Areas/Admin/Content/JS/demo.js"></script>
+</body>
+

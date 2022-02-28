@@ -1,0 +1,15 @@
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\BLL.dll
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\BLL.pdb
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\DAL.dll
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\DTO.dll
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\EntityFramework.dll
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\DAL.pdb
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\DAL.dll.config
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\DTO.pdb
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\EntityFramework.xml
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\obj\Debug\BLL.dll
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\obj\Debug\BLL.pdb
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\bin\Debug\BLL.dll.config
+C:\Users\freedom-lix\source\repos\ExcelUniversity\BLL\obj\Debug\BLL.csproj.CopyComplete

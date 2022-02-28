@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "EnrollmentList";
+    Layout = "~/Areas/Admin/Views/Shared/UserLayout.cshtml";
+}
+
+
+@model List<DTO.EnrollmentDTO>
+
+<div class="box box-primary">
+    @using (Html.BeginForm("EnrollmentList", "Enrollment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.Partial("Partial/List")
+    }
+</div>

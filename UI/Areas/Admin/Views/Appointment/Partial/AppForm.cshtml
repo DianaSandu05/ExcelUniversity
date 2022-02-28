@@ -1,0 +1,43 @@
+﻿@model List<DTO.AppointmentDTO>
+<div class="box-body">
+    <div class="form-group">
+        <label>Appointment Date</label>
+        @Html.TextBoxFor(x => x.AppDate, new { @class = "form-control", type = "DateTime2" })
+        @Html.ValidationMessageFor(x => x.AppDate)
+    </div>
+
+    <div class="form-group">
+        <label>Semester</label>
+        @Html.TextBoxFor(x => x., new { @class = "form-control", placeholder = "Semester" })
+        @Html.ValidationMessageFor(x => x.Semester)
+    </div>
+    <div class="form-group">
+        <label>Assignment structure</label>
+        @*// Need to modify below line at uploadFile*@
+        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.TextBox("file", "", new { type = "file" }) <br />
+                <input type="submit" value="Upload" />
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <label>Feedback</label>
+        @*// Need to modify below line at uploadFile*@
+        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.TextBox("file", "", new { type = "file" }) <br />
+                <input type="submit" value="Upload" />
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+    <input type="number" hidden name="ID" value="@Model.ID" />
+    <div class="card-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+</div>
+

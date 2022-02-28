@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d7406cca2b14f15af48826341ecb72f" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Admin_T" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Appointment" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Assignment" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Course" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.ForgottenPass" Width="1.5" PointX="18" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.LiaisonReport" Width="1.5" PointX="15" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Student" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.sysdiagram" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Teacher" Width="1.5" PointX="20.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.User" Width="1.5" PointX="12.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Appointment_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Course_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_ForgottenPass_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_LiaisonReports_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_LiaisonReports_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Teacher_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Users_Admin_T" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Appointment_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Appointment_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Appointment_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_Appointment" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_Assignments" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Teacher_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_ForgottenPass_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_ForgottenPass_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_ForgottenPass_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_ForgottenPass" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Teacher_ForgottenPass" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_LiaisonReports_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_LiaisonReports" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Teacher_LiaisonReports" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Users_LiaisonReports" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Students_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Teacher_Students" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Inquiry" Width="1.5" PointX="4" PointY="5.875" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Inquiries_Course" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Inquiries_Students" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Assignments_Course" />
+        <EntityTypeShape EntityType="BloemendhalCityCampusModel.Enrollment" Width="1.5" PointX="22.5" PointY="12.125" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Enrollment_Course" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Enrollment_Students" />
+        <AssociationConnector Association="BloemendhalCityCampusModel.FK_Enrollment_Teacher" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,40 @@
+﻿
+@model List<DTO.EnrollmentDTO>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Enrollment List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+
+
+                    <th>CourseID</th>
+                    <th>Course Name</th>
+                    <th>EnrollmentID</th>
+                    <th>Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.CourseID</td>
+                        <td>@item.CourseName</td>
+                        <td>@item.StudentID</td>
+                        <td>@item.sSurname @item.sFirstName</td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <!-- /.card-body -->
+</div>

@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BloemendhalCityCampusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin_T">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointment_Admin_T" FromRole="Admin_T" ToRole="Appointment" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Admin_T" FromRole="Admin_T" ToRole="Course" />
+    <NavigationProperty Name="ForgottenPasses" Relationship="Self.FK_ForgottenPass_Admin_T" FromRole="Admin_T" ToRole="ForgottenPass" />
+    <NavigationProperty Name="LiaisonReports" Relationship="Self.FK_LiaisonReports_Admin" FromRole="Admin_T" ToRole="LiaisonReports" />
+    <NavigationProperty Name="LiaisonReports1" Relationship="Self.FK_LiaisonReports_Admin_T" FromRole="Admin_T" ToRole="LiaisonReports" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Admin_T" FromRole="Admin_T" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teacher_Admin_T" FromRole="Admin_T" ToRole="Teacher" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Admin_T" FromRole="Admin_T" ToRole="Users" />
+    <Property Name="isAdmin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="TeacherID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="isConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_Appointment_Admin_T" FromRole="Appointment" ToRole="Admin_T" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Appointment_Course" FromRole="Appointment" ToRole="Course" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Appointment_Students" FromRole="Appointment" ToRole="Students" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Appointment_Teacher" FromRole="Appointment" ToRole="Teacher" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Appointment" FromRole="Appointment" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssignmentDeadline" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MarkingCriteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AssignmentStructure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Assignments" FromRole="Assignments" ToRole="Students" />
+    <Property Name="CourseID" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="BloemendhalCityCampusModel.FK_Assignments_Course" FromRole="Assignment" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="WeeklySchedule" Type="DateTime" Precision="3" />
+    <Property Name="NoHours" Type="Int32" />
+    <Property Name="Semester" Type="Int32" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="AssignmentID" Type="Int32" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_Course_Admin_T" FromRole="Course" ToRole="Admin_T" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointment_Course" FromRole="Course" ToRole="Appointment" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Course" FromRole="Course" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teacher_Course" FromRole="Course" ToRole="Teacher" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="isEnrolled" Type="Boolean" />
+    <NavigationProperty Name="Inquiries" Relationship="BloemendhalCityCampusModel.FK_Inquiries_Course" FromRole="Course" ToRole="Inquiry" />
+    <NavigationProperty Name="Assignments" Relationship="BloemendhalCityCampusModel.FK_Assignments_Course" FromRole="Course" ToRole="Assignment" />
+    <NavigationProperty Name="Enrollments" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Course" FromRole="Course" ToRole="Enrollment" />
+  </EntityType>
+  <EntityType Name="ForgottenPass">
+    <Key>
+      <PropertyRef Name="PassID" />
+    </Key>
+    <Property Name="PassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="LockOutEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LockOutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_ForgottenPass_Admin_T" FromRole="ForgottenPass" ToRole="Admin_T" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_ForgottenPass_Students" FromRole="ForgottenPass" ToRole="Students" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_ForgottenPass_Teacher" FromRole="ForgottenPass" ToRole="Teacher" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ForgottenPass_Users" FromRole="ForgottenPass" ToRole="Users" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_ForgottenPass" FromRole="ForgottenPass" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teacher_ForgottenPass" FromRole="ForgottenPass" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="LiaisonReport">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProblemTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CaseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Progress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isClosed" Type="Boolean" />
+    <Property Name="ClosingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Analysis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_LiaisonReports_Admin" FromRole="LiaisonReports" ToRole="Admin_T" />
+    <NavigationProperty Name="Admin_T1" Relationship="Self.FK_LiaisonReports_Admin_T" FromRole="LiaisonReports" ToRole="Admin_T" />
+    <NavigationProperty Name="User" Relationship="Self.FK_LiaisonReports_Users" FromRole="LiaisonReports" ToRole="Users" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_LiaisonReports" FromRole="LiaisonReports" ToRole="Students" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teacher_LiaisonReports" FromRole="LiaisonReports" ToRole="Teacher" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_LiaisonReports" FromRole="LiaisonReports" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Results" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DoB" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="AppID" Type="Int32" />
+    <Property Name="TeacherID" Type="Int32" />
+    <Property Name="PassID" Type="Int32" />
+    <Property Name="AssignmentID" Type="Int32" />
+    <Property Name="LiaisonID" Type="Int32" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_Students_Admin_T" FromRole="Students" ToRole="Admin_T" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointment_Students" FromRole="Students" ToRole="Appointment" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Students_Appointment" FromRole="Students" ToRole="Appointment" />
+    <NavigationProperty Name="Assignment" Relationship="Self.FK_Students_Assignments" FromRole="Students" ToRole="Assignments" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Students_Course" FromRole="Students" ToRole="Course" />
+    <NavigationProperty Name="ForgottenPasses" Relationship="Self.FK_ForgottenPass_Students" FromRole="Students" ToRole="ForgottenPass" />
+    <NavigationProperty Name="ForgottenPass" Relationship="Self.FK_Students_ForgottenPass" FromRole="Students" ToRole="ForgottenPass" />
+    <NavigationProperty Name="LiaisonReport" Relationship="Self.FK_Students_LiaisonReports" FromRole="Students" ToRole="LiaisonReports" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK_Students_Teacher" FromRole="Students" ToRole="Teacher" />
+    <NavigationProperty Name="Teachers" Relationship="Self.FK_Teacher_Students" FromRole="Students" ToRole="Teacher" />
+    <NavigationProperty Name="Inquiries" Relationship="BloemendhalCityCampusModel.FK_Inquiries_Students" FromRole="Student" ToRole="Inquiry" />
+    <NavigationProperty Name="Enrollments" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Students" FromRole="Student" ToRole="Enrollment" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="PassID" Type="Int32" />
+    <Property Name="LiaisonID" Type="Int32" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_Teacher_Admin_T" FromRole="Teacher" ToRole="Admin_T" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointment_Teacher" FromRole="Teacher" ToRole="Appointment" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Teacher_Course" FromRole="Teacher" ToRole="Course" />
+    <NavigationProperty Name="ForgottenPasses" Relationship="Self.FK_ForgottenPass_Teacher" FromRole="Teacher" ToRole="ForgottenPass" />
+    <NavigationProperty Name="ForgottenPass" Relationship="Self.FK_Teacher_ForgottenPass" FromRole="Teacher" ToRole="ForgottenPass" />
+    <NavigationProperty Name="LiaisonReport" Relationship="Self.FK_Teacher_LiaisonReports" FromRole="Teacher" ToRole="LiaisonReports" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Students_Teacher" FromRole="Teacher" ToRole="Students" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Teacher_Students" FromRole="Teacher" ToRole="Students" />
+    <NavigationProperty Name="Enrollments" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Teacher" FromRole="Teacher" ToRole="Enrollment" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdateUserID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LiaisonID" Type="Int32" />
+    <Property Name="UserRole" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Admin_T" Relationship="Self.FK_Users_Admin_T" FromRole="Users" ToRole="Admin_T" />
+    <NavigationProperty Name="ForgottenPasses" Relationship="Self.FK_ForgottenPass_Users" FromRole="Users" ToRole="ForgottenPass" />
+    <NavigationProperty Name="LiaisonReports" Relationship="Self.FK_LiaisonReports_Users" FromRole="Users" ToRole="LiaisonReports" />
+    <NavigationProperty Name="LiaisonReport" Relationship="Self.FK_Users_LiaisonReports" FromRole="Users" ToRole="LiaisonReports" />
+    <Property Name="isAdmin" Type="String" Unicode="true" FixedLength="false" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_Appointment_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForgottenPass_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ForgottenPass">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LiaisonReports_Admin">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LiaisonReports">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LiaisonReports_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LiaisonReports">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Admin_T">
+    <End Role="Admin_T" Type="Self.Admin_T" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin_T">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="LastUpdateUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Appointment">
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appointment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="AppID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Assignments">
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="AssignmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForgottenPass_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ForgottenPass">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForgottenPass_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ForgottenPass">
+        <PropertyRef Name="TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForgottenPass_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ForgottenPass">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_ForgottenPass">
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForgottenPass">
+        <PropertyRef Name="PassID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="PassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_ForgottenPass">
+    <End Role="ForgottenPass" Type="Self.ForgottenPass" Multiplicity="0..1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForgottenPass">
+        <PropertyRef Name="PassID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="PassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LiaisonReports_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LiaisonReports">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_LiaisonReports">
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LiaisonReports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="LiaisonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_LiaisonReports">
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="0..1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LiaisonReports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="LiaisonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_LiaisonReports">
+    <End Role="LiaisonReports" Type="Self.LiaisonReport" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LiaisonReports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="LiaisonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BloemendhalCityCampusEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin_T" EntityType="Self.Admin_T" />
+    <EntitySet Name="Appointments" EntityType="Self.Appointment" />
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="ForgottenPasses" EntityType="Self.ForgottenPass" />
+    <EntitySet Name="LiaisonReports" EntityType="Self.LiaisonReport" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Appointment_Admin_T" Association="Self.FK_Appointment_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Admin_T" Association="Self.FK_Course_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForgottenPass_Admin_T" Association="Self.FK_ForgottenPass_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LiaisonReports_Admin" Association="Self.FK_LiaisonReports_Admin">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LiaisonReports_Admin_T" Association="Self.FK_LiaisonReports_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Admin_T" Association="Self.FK_Students_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Admin_T" Association="Self.FK_Teacher_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Admin_T" Association="Self.FK_Users_Admin_T">
+      <End Role="Admin_T" EntitySet="Admin_T" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Course" Association="Self.FK_Appointment_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Students" Association="Self.FK_Appointment_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Teacher" Association="Self.FK_Appointment_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Appointment" Association="Self.FK_Students_Appointment">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Assignments" Association="Self.FK_Students_Assignments">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Course" Association="Self.FK_Students_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Course" Association="Self.FK_Teacher_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForgottenPass_Students" Association="Self.FK_ForgottenPass_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForgottenPass_Teacher" Association="Self.FK_ForgottenPass_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForgottenPass_Users" Association="Self.FK_ForgottenPass_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_ForgottenPass" Association="Self.FK_Students_ForgottenPass">
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_ForgottenPass" Association="Self.FK_Teacher_ForgottenPass">
+      <End Role="ForgottenPass" EntitySet="ForgottenPasses" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LiaisonReports_Users" Association="Self.FK_LiaisonReports_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_LiaisonReports" Association="Self.FK_Students_LiaisonReports">
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_LiaisonReports" Association="Self.FK_Teacher_LiaisonReports">
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_LiaisonReports" Association="Self.FK_Users_LiaisonReports">
+      <End Role="LiaisonReports" EntitySet="LiaisonReports" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Teacher" Association="Self.FK_Students_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Students" Association="Self.FK_Teacher_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <EntitySet Name="Inquiries" EntityType="BloemendhalCityCampusModel.Inquiry" />
+    <AssociationSet Name="FK_Inquiries_Course" Association="BloemendhalCityCampusModel.FK_Inquiries_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Inquiry" EntitySet="Inquiries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inquiries_Students" Association="BloemendhalCityCampusModel.FK_Inquiries_Students">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Inquiry" EntitySet="Inquiries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Assignments_Course" Association="BloemendhalCityCampusModel.FK_Assignments_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Assignment" EntitySet="Assignments" />
+    </AssociationSet>
+    <EntitySet Name="Enrollments" EntityType="BloemendhalCityCampusModel.Enrollment" />
+    <AssociationSet Name="FK_Enrollment_Course" Association="BloemendhalCityCampusModel.FK_Enrollment_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Students" Association="BloemendhalCityCampusModel.FK_Enrollment_Students">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enrollment_Teacher" Association="BloemendhalCityCampusModel.FK_Enrollment_Teacher">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Inquiry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InquiryDetails" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="BloemendhalCityCampusModel.FK_Inquiries_Course" FromRole="Inquiry" ToRole="Course" />
+    <NavigationProperty Name="Student" Relationship="BloemendhalCityCampusModel.FK_Inquiries_Students" FromRole="Inquiry" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_Inquiries_Course">
+    <End Type="BloemendhalCityCampusModel.Course" Role="Course" Multiplicity="1" />
+    <End Type="BloemendhalCityCampusModel.Inquiry" Role="Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inquiries_Students">
+    <End Type="BloemendhalCityCampusModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="BloemendhalCityCampusModel.Inquiry" Role="Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Assignments_Course">
+    <End Type="BloemendhalCityCampusModel.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="BloemendhalCityCampusModel.Assignment" Role="Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="EnrollmentID" />
+    </Key>
+    <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="TeacherID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Course" FromRole="Enrollment" ToRole="Course" />
+    <NavigationProperty Name="Student" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Students" FromRole="Enrollment" ToRole="Student" />
+    <NavigationProperty Name="Teacher" Relationship="BloemendhalCityCampusModel.FK_Enrollment_Teacher" FromRole="Enrollment" ToRole="Teacher" />
+    <Property Name="AssignmentsID" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Enrollment_Course">
+    <End Type="BloemendhalCityCampusModel.Course" Role="Course" Multiplicity="1" />
+    <End Type="BloemendhalCityCampusModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Students">
+    <End Type="BloemendhalCityCampusModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="BloemendhalCityCampusModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enrollment_Teacher">
+    <End Type="BloemendhalCityCampusModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="BloemendhalCityCampusModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="TeacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

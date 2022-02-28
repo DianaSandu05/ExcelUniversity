@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "addEnrollment";
+    Layout = "~/Areas/Admin/Views/Shared/UserLayout.cshtml";
+}
+
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            @Html.Partial("~/Areas/Admin/Views/Shared/MessageForm.cshtml")
+            <div class="box box-primary">
+                @using (Html.BeginForm("addEnrollment", "Enrollment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Partial("Partial/EnrollmentForm")
+                }
+            </div>
+        </div>
+    </div>
+</section>

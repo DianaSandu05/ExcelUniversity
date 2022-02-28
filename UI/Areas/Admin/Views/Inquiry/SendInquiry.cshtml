@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "SendInquiry";
+    Layout = "~/Areas/Admin/Views/Shared/StudentLayout.cshtml";
+}
+
+
+<div class="col-md-9">
+    @Html.Partial("~/Areas/Admin/Views/Shared/MessageForm.cshtml")
+    <div class="box box-primary">
+        @using (Html.BeginForm("SendInquiry", "Inquiry", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.Partial("Partial/InquiryForm")
+        }
+    </div>
+</div>

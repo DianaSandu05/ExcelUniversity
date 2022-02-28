@@ -1,0 +1,883 @@
+﻿
+@model List<DTO.EnrollmentDTO>
+<link href="~/Areas/Admin/Content/CSS/main.css" rel="stylesheet" />
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="col-md-12>
+            <div class="card card-primary">
+                <div class="card-body p-0">
+                    <!-- THE CALENDAR -->
+                    <div id="calendar" class="fc fc-media-screen fc-direction-ltr fc-theme-bootstrap">
+                        <div class="fc-header-toolbar fc-toolbar fc-toolbar-ltr">
+                            <div class="fc-toolbar-chunk">
+                                <div class="btn-group">
+                                    <button class="fc-prev-button btn btn-primary" type="button" aria-label="prev">
+                                        <span class="fa fa-chevron-left"></span>
+                                    </button><button class="fc-next-button btn btn-primary" type="button" aria-label="next">
+                                        <span class="fa fa-chevron-right"></span>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="fc-toolbar-chunk">
+                                <h2 class="fc-toolbar-title">@DateTime.Today</h2>
+                            </div>
+
+                        </div>
+                        <div class="fc-view-harness fc-view-harness-active" style="height: 726.667px;">
+                            <div class="fc-daygrid fc-dayGridMonth-view fc-view">
+                                <table class="fc-scrollgrid table-bordered fc-scrollgrid-liquid">
+                                    <thead>
+                                        <tr class="fc-scrollgrid-section fc-scrollgrid-section-header ">
+                                            <td>
+                                                <div class="fc-scroller-harness">
+                                                    <div class="fc-scroller" style="overflow: hidden;">
+                                                        <table class="fc-col-header " style="width: 100%;">
+                                                            <colgroup>
+                                                            </colgroup>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-sun">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Sun</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-mon">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Mon</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-tue">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Tue</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-wed">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Wed</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-thu">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Thu</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-fri">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Fri</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="fc-col-header-cell fc-day fc-day-sat">
+                                                                        <div class="fc-scrollgrid-sync-inner">
+                                                                            <a class="fc-col-header-cell-cushion ">Sat</a>
+                                                                        </div>
+                                                                    </th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="fc-scrollgrid-section fc-scrollgrid-section-body  fc-scrollgrid-section-liquid">
+                                            <td>
+                                                <div class="fc-scroller-harness fc-scroller-harness-liquid">
+                                                    <div class="fc-scroller fc-scroller-liquid-absolute" style="overflow: hidden auto;">
+                                                        <div class="fc-daygrid-body fc-daygrid-body-unbalanced " style="width: 100%;">
+                                                            <table class="fc-scrollgrid-sync-table" style="width: 100%; height: 694px;">
+                                                                <colgroup>
+                                                                </colgroup>
+                                                                <tbody>
+                                                                    <tr>
+
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.Day)</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+
+
+
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(1)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(1).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(1).DayOfWeek)
+                                                                                        {
+                                                                                            
+
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules })" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+                                                                                                }
+                                                                                            
+                                                                                    }
+
+
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(2)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(2).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(2).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(3)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(3).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(3).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(4)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(4).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(4).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(5)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(5).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(5).DayOfWeek)
+                                                                                        {
+                                                                                          
+
+                                                                                                <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules })" class="fc-daygrid-day-events"
+                                                                                                   style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+                                                                                                }
+                                                                                            
+                                                                                        }
+                                                                                    </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(6)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(6)</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(6).DayOfWeek)
+                                                                                        {
+                                                                                            
+                                                                                                <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules })" class="fc-daygrid-day-events"
+                                                                                                   style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+                                                                                                }
+                                                                                            
+                                                                                        }
+                                                                                    </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(7)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(7).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(7).DayOfWeek)
+                                                                                        {
+                                                                                           
+
+                                                                                                <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules })" class="fc-daygrid-day-events"
+                                                                                                   style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+                                                                                                }
+                                                                                            
+                                                                                        }
+                                                                                    </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(8)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(8).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(8).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(9)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(9).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(9).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(10)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(10).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(10).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(11)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(11).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(11).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(12)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(12).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(12).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(13)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(13).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(13).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(14)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(14).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(14).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(15)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(15).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(15).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(16)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(16).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(16).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(17)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(17).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(17).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(18)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(18).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(18).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(19)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(19).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(19).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }>
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(20)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(20).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(20).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(21)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(21).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(21).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(22)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(22).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(22).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(23)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(23).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(23).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(24)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(24).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(24).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(25)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(25).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(25).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(26)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(26).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(26).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(27)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(27).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(27).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(28)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(28).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(28).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(29)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(29).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(29).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(30)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(30).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(30).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(31)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(31).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(31).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(32)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(32).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(32).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(33)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(33).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(33).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="fc-daygrid-day fc-day fc-day-sun fc-day-past fc-day-other" data-date="@DateTime.Today.AddDays(34)">
+                                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                                                <div class="fc-daygrid-day-top">
+                                                                                    <h6 id="dateID">@DateTime.Today.AddDays(34).Day</h6>
+                                                                                    @foreach (var item in Model)
+                                                                                    {
+                                                                                        if (item.WeeklySchedule.DayOfWeek == DateTime.Today.AddDays(34).DayOfWeek)
+                                                                                        {
+                                                                                            <a href="@Url.RouteUrl("Courses", new { @item.GetSchedules})" class="fc-daygrid-day-events"
+                                                                                               style="border-color: rgb(245, 105, 84); background-color: rgb(252, 168, 0); border-radius: 10%; "> @item.CourseName, @item.WeeklySchedule.Hour</a>
+
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-events">
+                                                                                </div>
+                                                                                <div class="fc-daygrid-day-bg">
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+</section>
+
+<!-- fullCalendar 2.2.5 -->
+<script src="~/Areas/Admin/Content/JS/moment.min.js"></script>
+<script src="~/Areas/Admin/Content/JS/main.js"></script>
+
+
+
+
+

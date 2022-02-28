@@ -1,0 +1,20 @@
+﻿@using UI.Areas.Admin
+@if (ViewBag.ProcessState == BLL.General.Messages.AddSuccess)
+{
+    <div class="alert alert-success">
+        <strong> You've succcessfully added new record'</strong>
+    </div>
+}
+else if (ViewBag.ProcessState == BLL.General.Messages.EmptyArea)
+{
+    <div class="alert alert-danger">
+        <strong>Error!Please fill all the areas</strong>
+    </div>
+}
+else if (ViewBag.ProcessState == BLL.General.Messages.UpdateSuccess)
+{
+    <div class="alert alert-success">
+        <strong> Update operation was completed successfully</strong>
+    </div>  
+}
+

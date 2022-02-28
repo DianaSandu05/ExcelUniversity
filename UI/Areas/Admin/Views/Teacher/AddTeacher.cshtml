@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "AddTeacher";
+    Layout = "~/Areas/Admin/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>AddTeacher</h2>
+
+<div class="card-footer">
+    <button type="submit" class="btn btn-primary" onclick="window.location.href='/Admin/User/UserList'">Course List</button>
+</div>
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            @Html.Partial("~/Areas/Admin/Views/Shared/MessageForm.cshtml")
+            <div class="box box-primary">
+                @using (Html.BeginForm("AddTeacher", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Partial("Partial/TeacherForm")
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

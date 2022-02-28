@@ -1,0 +1,47 @@
+﻿@model DTO.CoursesDTO
+<div class="box-body">
+    <div class="form-group">
+        <label>Course Name</label>
+        @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control", placeholder = "User Name" })
+        @Html.ValidationMessageFor(x => x.CourseName)
+    </div>
+    <div class="form-group">
+        <label>Teacher ID</label>
+        @Html.TextBoxFor(x => x.TeacherID, new { @class = "form-control", placeholder = "Search" })
+        @Html.ValidationMessageFor(x => x.TeacherID)
+        
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", type = "DateTime2" })
+        @Html.ValidationMessageFor(x => x.StartDate)
+    </div>
+    <div class="form-group">
+        <label>End date</label>
+        @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", type = "DateTime2" })
+        @Html.ValidationMessageFor(x => x.EndDate)
+    </div>
+    <div class="form-group">
+        <label>Course lenght</label>
+        @Html.TextBoxFor(x => x.NoHours, new { @class = "form-control", placeholder = "NoHours" })
+        @Html.ValidationMessageFor(x => x.NoHours)
+    </div>
+    <div class="form-group">
+        <label>Semester</label>
+        @Html.TextBoxFor(x => x.Semester, new { @class = "form-control", placeholder = "Semester" })
+        @Html.ValidationMessageFor(x => x.Semester)
+    </div>
+    <div class="form-group">
+        <label>Semester</label>
+        @Html.TextBoxFor(x => x.Semester, new { @class = "form-control", placeholder = "Semester" })
+        @Html.ValidationMessageFor(x => x.Semester)
+
+    </div>
+   
+     
+    
+    <input type="number" hidden name="ID" value="@Model.CourseID" />
+    <div class="card-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+</div>
